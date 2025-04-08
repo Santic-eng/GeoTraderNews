@@ -12,3 +12,14 @@ setInterval(function() {
       newsDiv.prepend(newsItem); // Neue News stehen oben
     });
 }, 60000); // Alle 60 Sekunden
+// TradingView-ähnlichen Chart anzeigen
+const chartDiv = document.getElementById('chart');
+const chart = LightweightCharts.createChart(chartDiv, { width: chartDiv.clientWidth, height: 300 });
+const lineSeries = chart.addLineSeries();
+
+// Hier lädst du echte Daten von einer Aktien-API
+fetch('https://deine-aktien-api.com/nvidia')
+  .then(response => response.json())
+  .then(data => {
+    lineSeries.setData(data);
+  });
